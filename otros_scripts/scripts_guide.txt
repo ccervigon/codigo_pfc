@@ -1,0 +1,49 @@
+author_clasif.py:
+    Script que obtiene el periodo en los que ha realizado commits el autor, clasificando en OH,LN y AO segun las horas en las que ha trabajado.
+
+author_clasif2.py:
+    Script que muestra el periodo en los que ha realizado commits el autor, clasificando en OH, LN y AO según las horas en las que ha trabajado. Y mostrando ademas el total de lineas añadidas al proyecto y el porcentaje lineas añadidas y borradas del proyecto que ha añadido el autor en cuestión.
+
+calc_estadist.py:
+    Script que para cada uno de los proyectos pasados te muestra:
+    - Para los commits, lineas añadidas y removidas:
+        - Los autores que han realizado la mitad de cada una de ellas y que porcentaje del total de autores representan.
+        - Los autores que han realizado el resto y que porcentaje del total de autores representan.
+        - El total de commits, lineas añadidas y removidas del proyecto y la canidad de dicha información que supone el porcentaje que le indicamos.
+        - El numero de commits, lineas añadidas y removidas que han realizado en total los autores tanto de la primera mitad como de la segunda.
+        - También almacena o muestra gráficamente toda la información anterior.
+    - La matriz de covarianzas entre los commits, lineas añadidas y lineas removidas de los autores.
+    - La matriz de correlación entre las 3 variables.
+    - Para un porcentaje dado se obtiene el numero de autores que han realizado dicho porcentaje de commits, lineas añadidas y removidas y se obtiene del array creado con los valores de todos los proyectos la media, mediana, moda, varianza y desv típica.
+
+commits_author.py:
+    Calcula los PM de de los proyectos de 2 maneras:
+        - Contando con 1 PM cada mñes trabajado por cada uno de los autores.
+        - Contando con 5/22 PM por cada semana trabajada por cada uno de los autores.
+
+count_pm8.py:
+    Pasa una funcion de smoothing con diferentes tipos y tamaños de ventana y hace una matriz con los PM obtenidos por cada una de las opciones empleando el metodo del modelo 3. Imprime dicha matriz y genera un archivo con el codigo latex representando uan tabla con dichos valores.
+
+pm_script.py [OBSOLETO]:
+    Actualiza los projectos descargando la version mas reciente de su repositorio, les pasa cvsanaly2 para crear las bbdd con toda la informacion actualizada y por ultimo ejecuta los modelos del 1 al 3 y almacena su resultado en un archivo de texto.
+
+smooth_win.py:
+    Muestra una grafica con las diferentes ventanas segun el tamaño que queramos.
+
+comp_smooth_win.py:
+    Para un autor de un proyecto dado, obtiene los resultados de aplicarle las diferentes funciones de smooth y tamaños de ventana elegidos a su estructura de trabajo temporal tanto en meses, semanas y días. Posteriormente almacena una grafica con los resultados obtenidos en meses, añadiendo unas lineas que indican cuando se ha trabajado más de 10, 12 y 15 días.
+    Después crea una tabla para meses, semanas y días con la media y la desvicion tipica de las diferencias en los resultados de cada mes para cada par de funciones aplicadas. E indica la media de las medias y la desviación tipica de las desviaciones tìpicas.
+
+prof_analisys.py:
+    En este script obtenemos de la base de datos de autores de openstack los que están pagados por empresas y han realizado commits (pues no todos los autores hacen commits, algunos solo aportan en las listas de correo o en bugs) y obtenemos como se reparten los commits realizados a lo largo del tiempo. Estos valores son almacenados en 1 archivo por autor en la carpeta info_openstack.
+    Tambien muestra los dias trabajados cada mes del proyecto por el autor que más días ha trabajado en el proyecto.
+
+prof_analisys.R:
+    Realiza lo mismo que porf_analisys.py pero en el lenguaje R.
+
+count_pm9.py:
+    Realiza lo mismo que count_pm8.py pero con la base de datos openstack_authors salvo la generacion del codigo en latex.
+
+pm_tools.py:
+    Contiene todos los metodos empleados en los scripts realizados para no tener que copiarlos en los nuevos scripts, teniendo solo que importar dicho archivo y emplearlos.
+

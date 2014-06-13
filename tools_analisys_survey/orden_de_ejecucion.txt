@@ -1,0 +1,12 @@
+Orden de ejecución de los scripts:
+
+    1) effort_survey.py SURVEY_DB DIR_TO_SAVE **NO NECESARIO**
+    2) extract_and_compare_survey_info.py SURVEY_DB PROJECT_DB DIR_TO_SAVE
+    3) list_commit_and_activity.py PROJECT_DB DIR_TO_SAVE
+
+    4) #Crear un CSV nuevo con:
+#id,author_id,upeople_id,hours,percent,commit,type,info,survey,days,commits
+
+    5) precision_recall_semester.py FILES_DIR
+    6) calculate_effort.py FILES_DIR
+    7) compare_distributions.py FILES_DIR
