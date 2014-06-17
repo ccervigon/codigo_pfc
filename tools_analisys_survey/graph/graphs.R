@@ -36,13 +36,13 @@ garbage <- dev.off()
 
 #GRAPHS OF TP, FN, TN, FP
 png(paste(dir, "graph_tp_fn.png", sep=''), width=1024, units="px")
-barplot(t(statistics[c(2,3)]), main="Number of correctly identifier non-full-time developers with threshold", ylab="Non-full-time Developers", xlab="Threshold",
+barplot(t(statistics[c(2,3)]), main="Number of correctly identifier full-time developers with threshold", ylab="Full-time Developers", xlab="Threshold (in commits/semester)",
           space=0.3, cex.axis=0.8, las=1, cex=0.8,
           names.arg=statistics$threshold, legend=rownames(t(statistics[c(2,3)]))) 
 garbage <- dev.off()
 
 png(paste(dir, "graph_tn_fp.png", sep=''), width=1024, units="px")
-barplot(t(statistics[c(4,5)]), main="Number of correctly identifier full-time developers with threshold", ylab="Full-time Developers", xlab="Threshold",
+barplot(t(statistics[c(4,5)]), main="Number of correctly identifier non-full-time developers with threshold", ylab="Non-full-time Developers", xlab="Threshold (in commits/semester)",
           space=0.3, cex.axis=0.8, las=1, cex=0.8,
           names.arg=statistics$threshold, legend=rownames(t(statistics[c(4,5)]))) 
 garbage <- dev.off()
@@ -59,13 +59,13 @@ normed$tn <- lapply(normed$tn, ntn, y=tot_non_prof)
 normed$fp <- lapply(normed$fp, ntn, y=tot_non_prof)
 
 png(paste(dir, "graph_tp_fn_norm.png", sep=''), width=1024, units="px")
-barplot(t(normed[c(2,3)]), main="Number of correctly identifier non-full-time developers with threshold (normalized)", ylab="Non-full-time Developers", xlab="Threshold",
+barplot(t(normed[c(2,3)]), main="Number of correctly identifier full-time developers with threshold (normalized)", ylab="Full-time Developers", xlab="Threshold (in commits/semester)",
           ylim=c(0,1),space=0.3, cex.axis=0.8, las=1, cex=0.8,
           names.arg=statistics$threshold, legend=rownames(t(statistics[c(2,3)]))) 
 garbage <- dev.off()
 
 png(paste(dir, "graph_tn_fp_norm.png", sep=''), width=1024, units="px")
-barplot(t(normed[c(4,5)]), main="Number of correctly identifier full-time developers with threshold (normalized)", ylab="Full-time Developers", xlab="Threshold",
+barplot(t(normed[c(4,5)]), main="Number of correctly identifier non-full-time developers with threshold (normalized)", ylab="Non-full-time Developers", xlab="Threshold (in commits/semester)",
           ylim=c(0,1),space=0.3, cex.axis=0.8, las=1, cex=0.8,
           names.arg=statistics$threshold, legend=rownames(t(statistics[c(4,5)]))) 
 garbage <- dev.off()
