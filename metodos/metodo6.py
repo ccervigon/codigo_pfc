@@ -117,7 +117,7 @@ def fix_smooth(f_original, len_window, window):
 list_projects = []
 
 #list_projects.append('openstack_authors')
-
+'''
 list_projects.append('vizgrimoire_vizgrimoirer_cvsanaly')
 list_projects.append('openstack_tempest_cvsanaly')
 list_projects.append('twbs_bootstrap_cvsanaly')
@@ -132,12 +132,23 @@ list_projects.append('gnome_kupfer_cvsanaly')
 list_projects.append('gnome_gedit_cvsanaly')
 list_projects.append('gnome_tracker_cvsanaly')
 list_projects.append('gnome_gnome_packagekit_cvsanaly')
+'''
+list_projects.append('openstack_cvsanaly')
 
 for project in range(0, len(list_projects)):
     print 'Project: ' + list_projects[project]
     con = MySQLdb.connect(host='localhost', user='tthebosss', passwd='1234', \
                           db=list_projects[project])
     cursor = con.cursor()
+
+    query = ('SELECT column_name FROM information_schema.columns WHERE '
+		     'table_schema=DATABASE() AND table_name="scmlog" AND '
+		     'column_name="author_date"')
+    cursor.execute(query)
+    if len(cursor.fetchall()) != 0:
+        date = 'author_date'
+    else:
+        date = 'date'
 
     cursor.execute('SELECT MIN(date) FROM scmlog')
     date_min = cursor.fetchall()[0][0]
@@ -160,7 +171,7 @@ for project in range(0, len(list_projects)):
         if people_ids:
             list_commits = ()
             for id in people_ids:
-                query = ('SELECT committer_id, author_id, author_date FROM scmlog '
+                query = ('SELECT committer_id, author_id, ' + date + ' FROM scmlog '
                          'WHERE author_id = %s')
                 cursor.execute(query, id[0])
                 list_commits += cursor.fetchall()
@@ -203,12 +214,12 @@ for project in range(0, len(list_projects)):
     for month in range(0, len_list):
         prof_authors = 0
         rest_authors = 0
-        min_dw = 10
+        min_dw = 2
         for author in range(0, tot_authors):
             if smooth_work_authors[author][month] >= min_dw:
                 prof_authors += 1
             else:
-                rest_authors += smooth_work_authors[author][month]/11.0
+                rest_authors += smooth_work_authors[author][month]/2.0
         PM.append(prof_authors + rest_authors)
         prof_in_month.append(prof_authors)
 
